@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Lección 03 - Eventos</title>
+
+    <!-- Importacion del jQuery -->
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+
+    <!-- Importacion del Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+      .img100 {
+        width: 100px;
+      }
+      .divRojo {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lección 03: Eventos</h1>
+      <hr />
+
+      <button id="btn1" class="btn btn-primary">Evento click</button>
+      <br /><br />
+
+      <img src="img/profesor.jpg" class="img100" />
+      <br /><br />
+
+      <div class="divRojo"></div>
+      <br /><br />
+
+      <a id="linkUdemy" href="http://udemy.com">Ir a Udemy</a>
+    </div>
+
+    <script>
+      $("#btn1").on("click", function () {
+        console.log("click");
+      });
+
+      $(".img100").on("mouseenter", function () {
+        console.log("mouse enter");
+        $(this).attr("src", "img/nophoto.jpg");
+      });
+
+      $(".img100").on("mouseleave", function () {
+        console.log("mouse leave");
+        $(this).attr("src", "img/profesor.jpg");
+      });
+
+      $(".divRojo").on("click", function () {
+        console.log("click en div rojo");
+      });
+
+      //controles especiales para links
+      $("#linkUdemy").on("click", function (event) {
+        //deteniendo el evento por defecto
+        event.preventDefault();
+        console.log("click en el link");
+        //capturando el valor del atributo href
+        var link = $(this).attr("href");
+        console.log("link >>>>>>", link);
+        //redirigiendo a la pagina del link
+        window.location = link;
+      });
+
+      $(document).ready(function () {
+        console.log(
+          "La pagina ya termino de cargar el js, el css, el html, listo para trabajar"
+        );
+      });
+    </script>
+  </body>
+</html>
